@@ -1,0 +1,44 @@
+extends index
+
+block content
+  main
+    h1 Dashboard
+    h5.gray Welcome back, John!
+    .dashboard
+      h3 Driver's License Registration Form Review for Abdul Ahmed
+      hr
+      .row
+        .col
+          h4 Personal Details
+          img(src='/image/user-5.jpg')
+          p First Name: Abdul
+          p Last Name: Ahmed
+          p Sex: Male
+          p Occupation: Developer
+          p Date Of Birth: 11/06/1987
+          p State Of Origin: Lagos
+          p Residential Address: Ajao Estate, Lagos
+          p Email Address: Ahmed.a@gmail.com
+        .col
+          h4 Vehicle License Application Details
+          p Application Type: Private
+          p Type: Renewal
+          p Test Scores: 75
+          p State Of Application: Lagos
+          p Residential Address: Ajao Estate, Lagos
+
+      hr
+      .row.form
+        form(action="" method="POST")
+          .row
+            .col-12.form-group
+              label(for="comments") Comments:
+              textarea.form-control(rows='3' id='comments' cols='50')
+
+            .col-4.form-group
+              label(for="action") Action:
+              select.form-control#action(required)
+                <option>Approve</option>
+                <option>Reject</option>
+            
+            button.btn.btn-primary(type="submit" id='reviewButton') Submit

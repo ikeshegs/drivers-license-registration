@@ -1,0 +1,30 @@
+extends index
+
+block content
+  main
+    h1 Dashboard
+    h5.gray Welcome back, John!
+    .dashboard
+      .row
+        .col
+          h2.gray Total Registrants
+          p 200
+        .col
+          h2.gray Total Open Applications
+          p 55
+        .dash-board.col
+          h2.gray Total Approved Applications
+          p 95
+        .dash-board.col
+          h2.gray Total Rejected Applications
+          p 50
+
+    h1 Pending Applications
+      ul
+        li: a(href='/users/reviewer/drivers/abdul') Abdul Ahmed
+        li: a(href='#') John Doe
+        li: a(href='#') Jane Doe
+        li: a(href='#') Foo Bar
+        li: a(href='#') Chinedu Emeka
+        li: a(href='#') Williams Prince
+          

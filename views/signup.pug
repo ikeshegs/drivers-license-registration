@@ -1,0 +1,99 @@
+extends index
+
+block content
+  main.auth
+    form(action="/api/v1/auth/signup" method="POST")
+      .form-group
+        label(for="firstname") First Name:
+        input.form-control(type="text" id="firstname" name="firstname" required)
+        
+      .form-group
+        label(for="lastname") Last Name:
+        input.form-control(type="text" id="lastname" name="lastname" required)
+      
+      .form-check.form-check-inline
+        input.form-check-input(type="radio" name="sex" id="male" value="male")
+        label.form-check-label(for="male") Male
+      
+      .form-check.form-check-inline
+        input.form-check-input(type="radio" name="sex" id="female" value="female")
+        label.form-check-label(for="female") Female
+
+      .form-group
+        label(for="dateOfBirth") Date Of Birth:
+        input.form-control(type='date' id="dateOfBirth" name="dateOfBirth" required)
+
+      .form-group
+        label(for="stateOfOrigin") State Of Origin:
+        select.form-control#stateOfOrigin(name="stateOfOrigin" required)
+          <option>Abia</option>
+          <option>Adamawa</option>
+          <option>Akwa Ibom</option>
+          <option>Anambra</option>
+          <option>Bauchi</option>
+          <option>Bayelsa</option>
+          <option>Benue</option>
+          <option>Borno</option>
+          <option>Cross River</option>
+          <option>Delta</option>
+          <option>Ebonyi</option>
+          <option>Edo</option>
+          <option>Ekiti</option>
+          <option>Enugu</option>
+          <option>F.C.T. Abuja</option>
+          <option>Gombe</option>
+          <option>Imo</option>
+          <option>Jigawa</option>
+          <option>Kaduna</option>
+          <option>Kano</option>
+          <option>Kastina</option>
+          <option>Kebbi</option>
+          <option>Kogi</option>
+          <option>Kwara</option>
+          <option>Lagos</option>
+          <option>Nasarawa</option>
+          <option>Niger</option>
+          <option>Ogun</option>
+          <option>Ondo</option>
+          <option>Osun</option>
+          <option>Oyo</option>
+          <option>Plateau</option>
+          <option>Rivers</option>
+          <option>Sokoto</option>
+          <option>Taraba</option>
+          <option>Yobe</option>
+          <option>Zamfara</option>
+
+      .form-group
+        label(for="email") Email Address:
+        input.form-control(type="email" id="email" name="email" required)
+
+      .form-group
+        label(for="password") Password:
+        input.form-control(type="password" id="password" name="password" required)
+
+      .form-group
+        label(for="passwordConfirm") Confirm Password:
+        input.form-control(type="password" id="passwordConfirm" name="passwordConfirm" required)
+
+      .form-group
+        label(for="phone") Phone Number:
+        input.form-control(type="tel" id="phone" name="phone" required)
+
+      .form-group
+        label(for="occupation") Occupation:
+        input.form-control(type="text" id="occupation" name="occupation" required)
+
+      .form-group
+        label(for="residentialAddress") Residential Address:
+        input.form-control(type="text" id="residentialAddress" name="residentialAddress" required)
+
+      .form-group
+        label(for="photo") Upload your picture:
+        input.form-control-file(type="file" id="photo" name="photo" enctype="multipart/form-data" )
+
+      .form-group
+        label(for="documents") Upload your documents (docx, pdf ONLY!!!):
+        input.form-control-file(type="file" id="documents" name="documents" enctype="multipart/form-data" )
+
+      button.btn.btn-primary(type="submit" id='signupButton') Submit

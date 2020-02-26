@@ -1,0 +1,14 @@
+extends index
+
+block content
+  main.auth
+    form(action="/api/v1/auth/login" method="POST")
+      .form-group
+        label(for="email") Email Address:
+        input.form-control(type="email" name="email" id="email" required)
+
+      .form-group
+        label(for="password") Password:
+        input.form-control(type="password" name="password" id="password" required)
+
+      button.btn.btn-primary(type="submit" id='signupButton') Submit

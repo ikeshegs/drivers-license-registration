@@ -1,0 +1,36 @@
+extends index
+
+block content
+  main.auth
+    h5 Hello #{user.firstname},
+    form(action="/api/v1/driver" method="POST")
+      .form-group
+        label(for="applicationType") Application Type:
+        select.form-control#applicationType(name='applicationType' required)
+          <option>Articulated Vehicle</option>
+          <option>Commercial</option>
+          <option>Private</option>
+          <option>Motorcycle</option>
+        </select>
+
+      .form-group
+        label(for="testScores") Test Scores:
+        input.form-control(type="number" name='testScores' id="testScores" min='0' max='100' required)
+
+      .form-group
+        label(for="stateOfApplication") State of Application:
+        input.form-control(type="text" id="stateOfApplication" name='stateOfApplication' required)
+
+      .form-check.form-check-inline
+        input.form-check-input(type="radio" name="type" id="firstTime" value="first time")
+        label.form-check-label(for="firstTime") First Time
+      
+      .form-check.form-check-inline
+        input.form-check-input(type="radio" name="type" id="renewal" value="renewal")
+        label.form-check-label(for="renewal") Renewal
+
+      .form-group
+        label(for="residentialAddress") Residential Address:
+        input.form-control(name='residentialAddress' type="text" id="residentialAddress" required)
+
+      button.btn.btn-primary(type="submit" id='signupButton') Submit

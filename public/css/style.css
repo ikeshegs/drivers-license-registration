@@ -1,0 +1,43 @@
+*, 
+::before,
+::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#reviewButton {
+  height: 40px;
+  margin: 10px;
+}
+
+.auth {
+  margin: 30px auto;
+  padding: 30px;
+  width: 560px;
+  border-radius: 25px;
+  background-color: #f8f9fa;
+}
+
+.dashboard {
+  margin: 40px auto;
+  padding: 15px;
+  width: 960px;
+  background-color: #f8f9fa;
+}
+
+.dashboard img {
+  border-radius: 50%;
+}
+
+.form {
+  padding: 15px 10px;
+}
+
+.gray {
+  color: gray;
+}
+
+h1 ul li a {
+  font-size: 0.5em;
+}
