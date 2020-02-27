@@ -9,8 +9,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index.route');
-const authRouter = require('./routes/auth.router');
-const viewRouter = require('./routes/view.router');
+const authRouter = require('./routes/auth.routes');
+const viewRouter = require('./routes/view.routes');
 const driverRouter = require('./routes/driver.route');
 
 const app = express();

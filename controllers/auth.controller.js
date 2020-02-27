@@ -104,7 +104,7 @@ exports.signup = catchAsyncError(async (req, res, next) => {
   // const url = `${req.protocol}://${req.get('host')}/me`;
   // await new Email(newUser, url).sendWelcome();
 
-  // createAndSendToken(newUser, 201, req, res);
+  createAndSendToken(newUser, 201, req, res);
 });
 
 exports.login = catchAsyncError(async (req, res, next) => {
@@ -123,6 +123,13 @@ exports.login = catchAsyncError(async (req, res, next) => {
     return next(new AppError('Incorrect email address or password', 401));
   }
 
-  // createAndSendToken(user, 200, req, res);
   createAndSendToken(user, 200, req, res);
 });
+
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedOut', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true
+  });
+  res.status(200).json({ status: 'success' });
+};
