@@ -7,10 +7,12 @@ const AppError = require('../utils/appError');
 const { upload } = require('../helpers/multer.config');
 
 const signToken = id => {
-  return jwt.sign({
+  return jwt.sign(
+    {
       id
     },
-    process.env.JWT_KEY, {
+    process.env.JWT_KEY,
+    {
       expiresIn: process.env.JWT_EXPIRES_IN
     }
   );
@@ -30,15 +32,21 @@ const createAndSendToken = (user, statusCode, req, res) => {
   // Remove password from output
   user.password = undefined;
 
-  res.status(statusCode).render('vehicleLicense', {
-    pageTitle: 'License Form',
+  res.status(statusCode).json({
+    status: 'success',
+    token,
     user
   });
 };
 
 exports.uploadUserPhoto = upload.single('photo');
 
-exports.uploadUserDocuments = upload.single('documents');
+exports.uploadUserDocument = upload.single('document');
+
+// exports.uploads = upload.fields([
+//   { name: 'photo', maxCount: 1 },
+//   { name: 'document', maxCount: 1 }
+// ]);
 
 exports.resizeUserPhoto = catchAsyncError(async (req, res, next) => {
   if (!req.file) return next();
@@ -72,9 +80,9 @@ exports.signup = catchAsyncError(async (req, res, next) => {
     residentialAddress
   } = req.body;
   // const photo = req.files.photo[0];
-  // const documents = req.files.documents
+  // const document = req.files.document;
 
-  console.log(req.files);
+  console.log(req.file);
 
   const newUser = await User.create({
     firstname,
@@ -89,14 +97,14 @@ exports.signup = catchAsyncError(async (req, res, next) => {
     dateOfBirth,
     stateOfOrigin,
     // photo,
-    // documents,
+    // document,
     role
   });
 
   // const url = `${req.protocol}://${req.get('host')}/me`;
   // await new Email(newUser, url).sendWelcome();
 
-  createAndSendToken(newUser, 201, req, res);
+  // createAndSendToken(newUser, 201, req, res);
 });
 
 exports.login = catchAsyncError(async (req, res, next) => {

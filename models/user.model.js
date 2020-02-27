@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
@@ -34,14 +36,14 @@ const userSchema = mongoose.Schema({
       message: 'Passwords are not the same'
     }
   },
-  // photo: {
-  //   type: String,
-  //   required: [true, 'Please upload your profile picture']
-  // },
-  // documents: {
-  //   type: String,
-  //   required: [true, 'Please upload the relevant documents']
-  // },
+  photo: {
+    type: String,
+    required: [true, 'Please upload your profile picture']
+  },
+  document: {
+    type: String,
+    required: [true, 'Please upload the relevant documents']
+  },
   role: {
     type: String,
     enum: ['user', 'application-reviewer', 'application-processor', 'admin'],
@@ -53,7 +55,8 @@ const userSchema = mongoose.Schema({
   },
   phone: {
     type: Number,
-    required: [true, 'Phone Number is required']
+    required: [true, 'Phone Number is required'],
+    min: []
   },
   dateOfBirth: {
     type: String,
@@ -74,7 +77,10 @@ const userSchema = mongoose.Schema({
   residentialAddress: {
     type: String,
     required: [true, 'Your residential address is required']
-  }
+  },
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date
 });
 
 // Middlewares
