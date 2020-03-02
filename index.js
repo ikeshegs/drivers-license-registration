@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const indexRouter = require('./routes/index.route');
 const authRouter = require('./routes/auth.routes');
 const viewRouter = require('./routes/view.routes');
-const driverRouter = require('./routes/driver.route');
+const licenseRouter = require('./routes/license.routes');
 
 const app = express();
 
@@ -32,7 +32,7 @@ mongoose
     useFindAndModify: false
   })
   .then(() => {
-    console.log('DB connection successful!')
+    console.log('DB connection successful!');
   });
 
 app.use(bodyParser.json());
@@ -45,7 +45,7 @@ app.use(
 app.use('/', indexRouter);
 app.use(viewRouter);
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1', driverRouter);
+app.use('/api/v1', licenseRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

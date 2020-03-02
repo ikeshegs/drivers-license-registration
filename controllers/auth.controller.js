@@ -133,3 +133,52 @@ exports.logout = (req, res) => {
   });
   res.status(200).json({ status: 'success' });
 };
+
+exports.forgotPassword = catchAsyncError(async (req, res, next) => {
+  const user = await User.findOne({
+    email: req.body.email
+  });
+  if (!user) {
+    return next(new AppError('There is no user with email address', 404));
+  }
+
+  // Generate the random reset token
+  const resetToken = user.createPasswordResetToken();
+  await user.save({
+    validateBeforeSave: false
+  });
+
+  try {
+    const resetURL = `${req.protocol}://${req.get(
+      'host'
+    )}/api/v1/users/resetPassword/${resetToken}`;
+    await new Email(user, resetURL).sendPasswordReset();
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Token sent to the email address!'
+    });
+  } catch (error) {
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save({
+      validateBeforeSave: false
+    });
+
+    return next(
+      new AppError(
+        'There was an error sending the email. Please try again later.',
+        500
+      )
+    );
+  }
+});
+
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(new AppError('Forbidden Access', 403));
+    }
+    next();
+  };
+};
